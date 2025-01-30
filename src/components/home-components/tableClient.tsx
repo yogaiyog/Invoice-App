@@ -85,17 +85,15 @@ const ClientTable = () => {
 
   return (
     <>
-      {loading ? (
-        <div className="skeleton h-16 w-full"></div>
-      ) : (
         <div className="collapse-open collapse bg-slate-300 shadow-md shadow-emerald-900 h-full">
           <div className="collapse-title  text-xl font-medium flex justify-between items-baseline">
             <h1 className="font-bold">CLIENTS</h1>
-            <button className="btn border-emerald-500 hover:bg-emerald-700 w-auto mt-2 text-emerald-700 hover:text-white"
+            <button className="px-4 text-xl py-3 rounded-lg border-2 border-emerald-500 hover:bg-emerald-700 w-auto mt-2 text-emerald-500"
                 onClick={() => setIsModalOpen(true)}>
                   <FontAwesomeIcon icon={faUserPlus} />
               </button> 
           </div>
+          {loading? <div className="flex flex-col justify-center text-center m-auto"><span className="loading loading-bars loading-lg"></span></div> :
           <div className="collapse-content flex flex-col justify-between">
             <div className="overflow-x-auto w-full">
               {!clients.length ? (
@@ -157,9 +155,9 @@ const ClientTable = () => {
                 </button>
             </div>
             }
-          </div>
+          </div>}
         </div>
-      )}
+
       {modalDetailClient && (
         <DetailClient
           onClose={() => setModalDetaliClient(false)}

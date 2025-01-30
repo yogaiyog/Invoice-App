@@ -89,83 +89,83 @@ const ProductTable = () => {
 
   return (
     <>
-      {loading ? (
-        <div className="skeleton w-full h-full bg-slate-200 rounded-md"></div>
-      ) : (
+
         <div className="collapse collapse-open bg-slate-300 min-h-[50vh] shadow-md shadow-emerald-900 h-full">
-          <div className="collapse-title text-xl font-medium flex justify-between items-baseline">
-            <h1>MY PRODUCTS</h1>
-            <button className="btn border-emerald-500 hover:bg-emerald-700 w-auto mt-2 text-emerald-700 hover:text-white"
+          <div className="collapse-title font-medium flex justify-between items-baseline">
+            <h1 className="font-bold text-xl">MY PRODUCTS</h1>
+            <button className="px-4 py-3 rounded-lg border-2 border-emerald-500 hover:bg-emerald-700 w-auto mt-2 text-emerald-500"
                 onClick={() => setIsModalOpen(true)}>
               <FontAwesomeIcon icon={faCirclePlus} className=""/>
             </button> 
           </div>
-          <div className="collapse-content flex flex-col justify-between">
-            <div className="overflow-x-auto">
-              {!products.length ? (
-                <div className="text-center">
-                  <p className="text-sm text-slate-500">
-                    No products found. Start adding your first product now!
-                  </p>
-                  <button
-                    className="btn btn-circle btn-outline w-auto mt-2 px-4"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Add New Product
-                  </button>
-                </div>
-              ) : (
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Price (idr)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {products.map((product, index) => (
-                      <tr key={product.id}>
-                        <th>{(currentPage - 1) * 5 + index + 1}</th>
-                        <td>{product.name}</td>
-                        <td>{product.description}</td>
-                        <td>{`${product.price.toFixed(2)}`}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
-            </div>
-            {/* Pagination Controls */}
-            
-            {products.length &&           
-            <div className="join w-full flex justify-center">
-                <button 
-                  className="join-item btn border-none" 
-                  onClick={() => handleNextPage(currentPage - 1)}
-                  disabled={currentPage === 1}>
-                    «
-                </button>            
-                  {Array.from({ length: totalPages }, (_, index) => (
+          {loading? <div className="flex flex-col justify-center text-center m-auto"><span className="loading loading-bars loading-lg"></span></div> :
+            <div className="collapse-content flex flex-col justify-between">
+              <div className="overflow-x-auto">
+                {!products.length ? (
+                  <div className="text-center">
+                    <p className="text-sm text-slate-500">
+                      No products found. Start adding your first product now!
+                    </p>
                     <button
-                      key={index}
-                      onClick={() => handlePageChange(index + 1)}
-                      className={`join-item btn border-none h-full ${currentPage === index + 1 && 'bg-slate-400 rounded'}`}
+                      className="btn btn-circle btn-outline w-auto mt-2 px-4"
+                      onClick={() => setIsModalOpen(true)}
                     >
-                      {index + 1}
+                      Add New Product
                     </button>
-                  ))}
-                <button className="join-item btn border-none"
-                  onClick={() => handleNextPage(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >»
-                </button>
+                  </div>
+                ) : (
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price (idr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {products.map((product, index) => (
+                        <tr key={product.id}>
+                          <th>{(currentPage - 1) * 5 + index + 1}</th>
+                          <td>{product.name}</td>
+                          <td>{product.description}</td>
+                          <td>{`${product.price.toFixed(2)}`}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+              {/* Pagination Controls */}
+              
+              {products.length &&           
+              <div className="join w-full flex justify-center">
+                  <button 
+                    className="join-item btn border-none" 
+                    onClick={() => handleNextPage(currentPage - 1)}
+                    disabled={currentPage === 1}>
+                      «
+                  </button>            
+                    {Array.from({ length: totalPages }, (_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`join-item btn border-none h-full ${currentPage === index + 1 && 'bg-slate-400 rounded'}`}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
+                  <button className="join-item btn border-none"
+                    onClick={() => handleNextPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                  >»
+                  </button>
+              </div>
+              }
             </div>
-            }
-          </div>
+          }
         </div>
-      )}
+
 
       {isModalOpen && (
         <NewProduct onClose={() => setIsModalOpen(false)} />

@@ -250,7 +250,7 @@ const InvoiceDetail: React.FC<InvoiceDetailProps> = ({ invoice, onClose }) => {
         </div>
         <div className="flex justify-between pr-16 mt-4">
           <button
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            className="mt-4 px-4 py-2 bg-slate-500 text-white rounded-lg hover:bg-slate-600"
             data-html2canvas-ignore
             onClick={onClose}
           >

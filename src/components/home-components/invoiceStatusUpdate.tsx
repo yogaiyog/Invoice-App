@@ -48,13 +48,13 @@ const InvoiceStatusUpdate: React.FC<{ invoice: Invoice, onClose: () => void }> =
   };
 
   return (
-    <div className="modal modal-open">
-      <div className="modal-box">
+    <div className="modal modal-open bg-white">
+      <div className="modal-box bg-white">
         <h3 className="text-xl font-bold">Update Invoice Status</h3>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as InvoiceStatus)} 
-          className="w-full my-6 p-2 border rounded"
+          className="w-full my-6 p-2 border rounded bg-white"
         >
           {Object.values(InvoiceStatus).map((statusOption) => (
             <option key={statusOption} value={statusOption}>
@@ -63,8 +63,8 @@ const InvoiceStatusUpdate: React.FC<{ invoice: Invoice, onClose: () => void }> =
           ))}
         </select>
         <div className="flex justify-end gap-2">
-          <button className="btn bg-slate-500 text-white" onClick={onClose}>Cancel</button>
-          <button className="btn btn-primary text-white" onClick={() => handleStatusChange(status)}>Save</button>
+          <button className="btn bg-slate-500 text-white hover:bg-slate-700" onClick={onClose}>Cancel</button>
+          <button className="btn hover:bg-emerald-300 text-emerald-700" onClick={() => handleStatusChange(status)}>Save</button>
         </div>
       </div>
     </div>

@@ -83,6 +83,7 @@ const InvoiceTable = () => {
    
         <div className="collapse collapse-open bg-slate-300 shadow-md shadow-emerald-900 min-h-[50vh]">
           <div className="collapse-title text-xl font-bold text-center">MY INVOICES</div>
+          {loading && <div className="flex flex-col justify-center text-center m-auto"><span className="loading loading-bars loading-lg"></span></div>}
           {invoices.length > 0 ? 
           <div className="collapse-content flex flex-col justify-between">
             <div className="overflow-x-auto">
