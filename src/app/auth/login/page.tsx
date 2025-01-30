@@ -29,7 +29,6 @@ const Login: React.FC = () => {
       const response = await axios.post(
         `${backendUrl}user/login`,
         values,
-        { withCredentials: true } // Tambahkan ini jika backend pakai cookies/session
       );
 
       toast.success("Login successful!");
